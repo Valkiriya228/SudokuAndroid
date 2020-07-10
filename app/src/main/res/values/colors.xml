@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorblue">#6200EE</color>
+    <color name="colormoreblue">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorblack">#050505</color>
+    <color name="colorwhite">#FCFCFD</color>
+    <color name="colorpink">#BA6D6D</color>
+    <color name="colordarkgreen">#021E1B</color>
+    <color name="colorgrey">#414746</color>
+    <color name="colorlightgrey">#7D8886</color>
+    <color name="colorfon">#937D78</color>
+</resources>
