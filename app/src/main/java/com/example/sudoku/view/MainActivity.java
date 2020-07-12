@@ -1,36 +1,61 @@
 package com.example.sudoku.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.example.sudoku.R;
-import com.example.sudoku.view.GameActivity;
-import com.example.sudoku.view.aboutActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends Activity implements OnClickListener {
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        findViewById(R.id.buttonStart).setOnClickListener(this);
-        findViewById(R.id.buttonAbout).setOnClickListener(this);
-        findViewById(R.id.buttonExit).setOnClickListener(this);
+        setContentView(R.layout.activity_main); //открытие первого главного окна с кнопками Start About Exit
+        findViewsById(); //инициализация всех кнопок и присваивание им их Id отдельным методом
+
     }
-    @Override
-    public void onClick(View v) { //Обработка переходов между окнами при нажатии на кнопки Start, About, Exit.
-        if (v.getId() == R.id.buttonAbout) { //Переход к правилам игры, для тех, кто их не знает.
-            Intent intent = new Intent(this, aboutActivity.class);
-            startActivity(intent);
-        }
-        if (v.getId() == R.id.buttonStart) { //Переход к окну с первым полем судоку
-            Intent intent = new Intent(this, GameActivity.class);
-            startActivity(intent);
-        }
-        if (v.getId() == R.id.buttonExit) finish(); // выход из приложения
+
+    public void findViewsById(){
+        View buttonStart = findViewById(R.id.buttonStart); //соответствие кнопкам их Id
+        buttonStart.setOnClickListener(this);
+        View buttonAbout = findViewById(R.id.buttonAbout);
+        buttonAbout.setOnClickListener(this);
+        View buttonExit = findViewById(R.id.buttonExit);
+        buttonExit.setOnClickListener(this);
     }
+
+    public void onClick(View v) { // метод для нажатий на кнопки на главном окне
+        if (v.getId() == R.id.buttonAbout) {//
+            Intent about = new Intent(this, aboutActivity.class); //осуществляется переход в класс aboutActivity
+            startActivity(about); //отображение окна about.xml
+        } else if (v.getId() == R.id.buttonStart) {
+            windowChoseLevel(); // открытие окошка с возможностью выбрать уровень сложности пользователю (смотри метод ниже)
+        } else if (v.getId() == R.id.buttonExit) { //при нажатии на Exit осуществляется выход из приложения
+            finish(); //закрытие приложения
+        }
+    }
+    private void windowChoseLevel() { //открытие нового окна с возможностю выбора уровня сложности
+        new AlertDialog.Builder(this) //создание нового диалогового окна
+                .setItems(R.array.difficulty, new DialogInterface.OnClickListener() { //это диалоговое окно включает в себя 2 вида
+                                                                                     // уровня сложности, с возможностью нажатия, то бишь выбора
+                    public void onClick(DialogInterface dialoginterface, int i) {
+                        startGame(i); //запуск метода, позволяющегооткрыть игровое поле
+                    }
+                }).show();//отображение после его запуска
+    }
+
+    private void startGame(int i) { //метод, который открывает игровое поле, с выбранным уровнем сложности
+        Intent intent = new Intent(MainActivity.this, GameActivity.class); //создание окна с отсылкой к классу GameActivity,
+                                                                                        // где прописывается  логика
+        intent.putExtra(GameActivity.level, i);//инициализация сложночти поля
+        startActivity(intent);//старт (открытие) окна содержимого
+    }
+
+
+
 }

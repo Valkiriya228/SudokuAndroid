@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.GameActivity"></activity>
+        <activity android:name=".keypad"></activity>
+        <activity
+            android:name=".view.GameActivity"
+            android:label="@string/app_name" />
         <activity android:name=".view.aboutActivity" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
