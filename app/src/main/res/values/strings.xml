@@ -1,19 +1,14 @@
 <resources>
     <string name="app_name">Sudoku</string>
     <string name="main_title">Android Sudoku</string>
-    <string name="continue_label">Continue</string>
+
     <string name="new_game_label">New Game</string>
     <string name="about_label">About</string>
     <string name="exit_label">Exit</string>
 
+    <string name="easy1_label">Easy1</string>
+    <string name="easy2_label">Easy2</string>
 
-    <string name="hints_title">Hints</string>
-    <string name="hints_summary">Show hints during play</string>
-
-    <string name="new_game_title">Difficulty</string>
-    <string name="easy_label">Easy</string>
-    <string name="medium_label">Medium</string>
-    <string name="hard_label">Hard</string>
 
     <string name="about_title">About Android Sudoku</string>
     <string name="about_text">\
